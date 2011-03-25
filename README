@@ -5,7 +5,8 @@ It is licensed under the BSD license.
 
 python poster.py <output_filename> <top_tile> <left_tile> <height> <width> <zoom> <styleid>
 
-Example: python poster.py out.png 8670 5392 1000 2000 14 999
+Example 1: python poster.py out.png 8662 5390 1500 4500 14 999
+Example 2: python poster.py out.png 17331 10777 2000 6000 15 999
 
 
 == LICENSE (BSD) ==

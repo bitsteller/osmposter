@@ -1,4 +1,4 @@
-import Image, ImageDraw, sys, os
+import Image, ImageDraw, sys, os, time
 
 global application_name, version_number, cmd_name
 global output_filename, top_tile, left_tile, height, width, zoom, style
@@ -28,11 +28,14 @@ def download_tiles(top_tile, left_tile, height, width, zoom, style):
 	clean()
 	execute_cmd("Creating tiles folder", "mkdir tiles")
 
-	print "Downloading tiles..."
 	for x in range(0, int(height)/tilesize + 1):
+		print "Downloading tiles (row " + str(x) + ")..."
 		for y in range(0, int(width)/tilesize + 1):
 			url = server_url + "/" + prefix_url + "/" + str(int(top_tile) + y) + "/" + str(int(left_tile) + x) + ".png"
 			execute_cmd("Downloading " + url, "wget -O tiles/"+ str(x) + "_" + str(y) + ".png " + url)
+			time.sleep(1)
+		print "Sleeping 10 seconds..."
+		time.sleep(9)
 
 def generate_poster(height, width, output_filename):
 	img = Image.new("RGBA", (int(width), int(height)))
