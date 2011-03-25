@@ -35,6 +35,14 @@ def download_tiles(top_tile, left_tile, height, width, zoom, style):
 			execute_cmd("Downloading " + url, "wget -O tiles/"+ str(x) + "_" + str(y) + ".png " + url)
 
 def generate_poster(height, width, output_filename):
+	img = Image.new("RGBA", (int(width), int(height)))
+	
+	print "Placing tiles..."
+	for x in range(0, int(height)/tilesize):
+		for y in range(0, int(width)/tilesize):
+			tile = Image.open("tiles/" + str(x) + "_" + str(y) + ".png")
+			img.paste(tile, (y * tilesize, x * tilesize))
+	img.save(output_filename)
 	return
 	
 	
@@ -63,7 +71,7 @@ if len(sys.argv) == 8:
 	
 	download_tiles(top_tile, left_tile, height, width, zoom, style)
 	generate_poster(height, width, output_filename)
-   #clean()
+	clean()
 elif len(sys.argv) == 2:
 	option = sys.argv[1]
 	if option == "-v": version()
