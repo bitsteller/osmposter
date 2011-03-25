@@ -7,7 +7,7 @@ application_name = 'osmposter'
 cmd_name = 'poster.py'
 version_number = "0.0.1"
 
-server_url = "http://c.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707"	
+server_url = "http://a.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707"	
 tilesize = 256
 
 def execute_cmd(action, cmd):
@@ -29,8 +29,8 @@ def download_tiles(top_tile, left_tile, height, width, zoom, style):
 	execute_cmd("Creating tiles folder", "mkdir tiles")
 
 	print "Downloading tiles..."
-	for x in range(0, int(height)/tilesize):
-		for y in range(0, int(width)/tilesize):
+	for x in range(0, int(height)/tilesize + 1):
+		for y in range(0, int(width)/tilesize + 1):
 			url = server_url + "/" + prefix_url + "/" + str(int(top_tile) + y) + "/" + str(int(left_tile) + x) + ".png"
 			execute_cmd("Downloading " + url, "wget -O tiles/"+ str(x) + "_" + str(y) + ".png " + url)
 
@@ -38,8 +38,8 @@ def generate_poster(height, width, output_filename):
 	img = Image.new("RGBA", (int(width), int(height)))
 	
 	print "Placing tiles..."
-	for x in range(0, int(height)/tilesize):
-		for y in range(0, int(width)/tilesize):
+	for x in range(0, int(height)/tilesize + 1):
+		for y in range(0, int(width)/tilesize + 1):
 			tile = Image.open("tiles/" + str(x) + "_" + str(y) + ".png")
 			img.paste(tile, (y * tilesize, x * tilesize))
 	img.save(output_filename)
@@ -78,15 +78,3 @@ elif len(sys.argv) == 2:
 	elif option == "-h": help()
 else:
 	print "FAILED: You need to specifiy all attributes. Try -h to get help."
-
-
-
-#im = Image.open("5392.png")
-
-#draw = ImageDraw.Draw(im)
-#draw.line((0, 0) + im.size, fill=128)
-#draw.line((0, im.size[1], im.size[0], 0), fill=128)
-#del draw 
-
-# write to stdout
-#im.save(sys.stdout, "PNG")
