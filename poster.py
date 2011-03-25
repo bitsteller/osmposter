@@ -7,8 +7,15 @@ application_name = 'osmposter'
 cmd_name = 'poster.py'
 version_number = "0.0.1"
 
+server_url = "http://c.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707"	
+tilesize = 256
+
 def download_tiles(top_tile, left_tile, height, width, zoom, style):
-	return
+	prefix_url = "/" + str(style) + "/" + str(tilesize) + "/" + str(zoom)
+	
+	for x in range(0, int(height)/tilesize):
+		for y in range(0, int(width)/tilesize):
+			print x,y
 
 def generate_poster(height, width, output_filename):
 	return
@@ -20,7 +27,7 @@ def version():
 def help():
 	version()
 	print ""
-	print "Usage: " + cmd_name + " output_filename top_tile left_tile height width zoom style"
+	print "Usage: " + cmd_name + " output_filename top_tile left_tile height width zoom styleid"
 	print ""
 	print "Available options:"
 	print " -v" + " - " + "output version number"
