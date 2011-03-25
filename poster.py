@@ -1,16 +1,16 @@
 import Image, ImageDraw, sys
 
 global application_name, version_number, cmd_name
-global top_tile, left_tile, height, width, zoom, style
+global output_filename, top_tile, left_tile, height, width, zoom, style
 
 application_name = 'osmposter'
 cmd_name = 'poster.py'
 version_number = "0.0.1"
 
-def download_tiles():
+def download_tiles(top_tile, left_tile, height, width, zoom, style):
 	return
 
-def generate_poster():
+def generate_poster(height, width, output_filename):
 	return
 	
 	
@@ -20,24 +20,25 @@ def version():
 def help():
 	version()
 	print ""
-	print "Usage: " + cmd_name + " top_tile left_tile height width zoom style"
+	print "Usage: " + cmd_name + " output_filename top_tile left_tile height width zoom style"
 	print ""
 	print "Available options:"
 	print " -v" + " - " + "output version number"
 	print " -h" + " - " + "this help"
 	
 #Main program
-if len(sys.argv) == 7:
-	global top_tile, left_tile, height, width, zoom, style
-	top_tile = sys.argv[1]
-	left_tile = sys.argv[2]
-	height = sys.argv[3]
-	width = sys.argv[4]
-	zoom = sys.argv[5]
-	style = sys.argv[6]
+if len(sys.argv) == 8:
+	global output_filename, top_tile, left_tile, height, width, zoom, style
+	output_filename = sys.argv[1]
+	top_tile = sys.argv[2]
+	left_tile = sys.argv[3]
+	height = sys.argv[4]
+	width = sys.argv[5]
+	zoom = sys.argv[6]
+	style = sys.argv[7]
 	
-	download_tiles()
-	generate_poster()
+	download_tiles(top_tile, left_tile, height, width, zoom, style)
+	generate_poster(height, width, output_filename)
 elif len(sys.argv) == 2:
 	option = sys.argv[1]
 	if option == "-v": version()
