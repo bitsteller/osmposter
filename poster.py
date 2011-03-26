@@ -33,9 +33,8 @@ def download_tiles(top_tile, left_tile, height, width, zoom, style):
 		for y in range(0, int(width)/tilesize + 1):
 			url = server_url + "/" + prefix_url + "/" + str(int(top_tile) + y) + "/" + str(int(left_tile) + x) + ".png"
 			execute_cmd("Downloading " + url, "wget -O tiles/"+ str(x) + "_" + str(y) + ".png " + url)
-			time.sleep(1)
 		print "Sleeping 10 seconds..."
-		time.sleep(9)
+		time.sleep(10)
 
 def generate_poster(height, width, output_filename):
 	img = Image.new("RGBA", (int(width), int(height)))

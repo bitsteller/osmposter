@@ -5,8 +5,31 @@ It is licensed under the BSD license.
 
 python poster.py <output_filename> <top_tile> <left_tile> <height> <width> <zoom> <styleid>
 
+Parameters in detail:
+  output_filename: the filename of the resulting image (supported formats include .png, .jpg and others)
+  top_tile: the number of the top tiles (see below)
+  left_tile: the number of the left tiles (see below)
+  height: height of the resulting image in pixels
+  width: width of the resulting image in pixels
+  zoom: zoom level that defines the number of details (see below)
+  styleid: the id of the style on cloudmade (see below)
+
+== How to get the values for top_tile, left_tile, zoom and styleid? ==
+	1. Goto maps.cloudmade.com.
+	2. Select your preferred map style.
+	3. Click on the "Share" button.
+	4. Create an empty text file with the postfix ".html".
+	5. Copy the embed code shown below the share url into the empty file
+	6. Open the file in a browser
+	7. On the map zoom to the the top left tile that should be on your poster. Make shure that the zoom level fits your needs.
+	8. Right-click on the tile and open the image in a new tab.
+	9. The URL has the format "http://<x>.tile.cloudmade.com/<y>/<styleid>/<z>/<zoom>/<top_tile>/<left_tile>.png and contains all necessary values (<x>, <y>, <z> can be ignored).
+
+
+== Examples ==
+
 Example 1: python poster.py out.png 8662 5390 1500 4500 14 999
-Example 2: python poster.py out.png 17331 10777 2000 6000 15 999
+Example 2: python poster.py out.png 17328 10777 3000 9000 15 999
 
 
 == LICENSE (BSD) ==
